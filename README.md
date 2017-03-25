@@ -18,7 +18,7 @@ In addition to the above tools, you will need one serial port with TTL outputs f
 * Temperature calibration
 * Auto-increment when setting times/alarms/etc. No need to repeatly press the same key.
 
-The features above are implemented with a multi-level menu with best-as-can-be-managed text prompts using the limited 7 segment displays. This menu helps (IMO) with the "here-the-hell-am-I" in the rather tortured, linear menu of the original software. This does come with a cost, namely flash space so please note that the initial commit of this code requires 4.25k of memory. This should not be an issue for the Banggood clock mentioned since it arrived with an 8k chip, the STC15W408AS. If you want to use this in a similar model that has only 4K of available flash, some features will need to be removed. Since this is a work in progress, a pull request with at least one feature to delete should get you a fork that will need no more than 4K.
+The features above are implemented with a multi-level menu with best-as-can-be-managed text prompts using the limited 7 segment displays. This menu helps (IMO) with the "here-the-hell-am-I" in the rather tortured, linear menu of the original software. This does come with a cost, namely flash space so please note that the initial commit of this code requires 4.25k of memory. This should not be an issue for the Banggood clock mentioned since it arrived with an 8k chip, the STC15W408AS. If you want to use this in a similar model that has only 4K of available flash, some features will need to be removed. Since this is a work in progress, a request with at least one feature to delete should get you a branch that will need no more than 4K of flash.
 
 I have found that consolidating the units selection (hour format, date format and temperature) into one group as an US/EU selection rather than three individual pieces works well to get code size under 4k. In hindsight, this might be a better method than keeping them as individual selections going forward. Another option is to remove the display of the day of the week feature which I consider rather usless option.
 
@@ -97,6 +97,7 @@ Since the original firmware loaded on the STC processor cannot be copied, there 
 ## Acknowledgments
 * [zerog2k](https://github.com/zerog2k) for his original STC DIY Clock work
 * STC and zerog2k for the ADC code used in the LDR and temperature measurement code
+* Jack Ganssle et al at The Embedded Muse for the [initial switch debouncing idea]http://www.ganssle.com/debouncing.htm
 * Maxim Integrated for their DS1302 app note and [8051 example code](https://www.maximintegrated.com/en/app-notes/index.mvp/id/3449)
 * All the contributors to the SDCC tool set
 
