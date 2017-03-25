@@ -92,7 +92,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Disclaimer
 This code is provided as-is, with NO guarantees or liabilities as per the License. Use at your own risk.
 
-Since the original firmware loaded on the STC proessor cannot be copied, there is no duplicating what you originally received with your clock. If you want to retain this code for any reason, you must purchase another STC chip of the same type (or same base type with more flash). These are readily available on Aliexpress in small quanities as well as eBay although the prices are usually much higher. Just be preparared to wait for them to arrive, especially from Aliexpress.
+Since the original firmware loaded on the STC processor cannot be copied, there is no duplicating what you originally received with your clock. If you want to retain this code for any reason, you must purchase another STC chip of the same type (or same base type with more flash if desired or needed). These are readily available on Aliexpress in small quanities as well as eBay although the prices are usually somewhat higher. Just be preparared to wait for them to arrive, especially from Aliexpress.
 
 ## Acknowledgments
 * [zerog2k](https://github.com/zerog2k) for his original STC DIY Clock work
