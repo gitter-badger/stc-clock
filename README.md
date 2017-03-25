@@ -1,4 +1,6 @@
 # Firmware replacement for Chinese STC based processor DIY Clock kits
+
+[![Join the chat at https://gitter.im/stc-clock/Lobby](https://badges.gitter.im/stc-clock/Lobby.svg)](https://gitter.im/stc-clock/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This is a replacement program for the STC 8051 core uP based DIY digital clock kits available from numerous Chinese sources. The specific clock used to develop this firmware was purchased from [Banggood](http://www.banggood.com/DIY-4-Digit-LED-Electronic-Clock-Kit-Temperature-Light-Control-Version-p-972289.html) but was constructed with a code base that should be (easily?) modified with future forks to support most of the four digit clocks that are based on the STC controllers.
 
 ![Image of Banggood id 972289](http://img.banggood.com/thumb/large/2014/xiemeijuan/03/SKU203096/A7.jpg)
