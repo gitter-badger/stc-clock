@@ -97,7 +97,7 @@ Since the original firmware loaded on the STC processor cannot be copied, there 
 ## Acknowledgments
 * [zerog2k](https://github.com/zerog2k) for his original STC DIY Clock work
 * STC and zerog2k for the ADC code used in the LDR and temperature measurement code
-* Jack Ganssle et al at The Embedded Muse for the [initial switch debouncing idea]http://www.ganssle.com/debouncing.htm
+* Jack Ganssle et al at The Embedded Muse for the [initial switch debouncing idea](http://www.ganssle.com/debouncing.htm)
 * Maxim Integrated for their DS1302 app note and [8051 example code](https://www.maximintegrated.com/en/app-notes/index.mvp/id/3449)
 * All the contributors to the SDCC tool set
 
