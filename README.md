@@ -1,5 +1,7 @@
 # Firmware replacement for Chinese STC based processor DIY Clock kits
-This is a replacement program for the STC 8051 core uP based DIY digital clock kits available from numerous Chinese sources. The specific clock used to develop this firmware was purchased from [Banggood](http://www.banggood.com/DIY-4-Digit-LED-Electronic-Clock-Kit-Temperature-Light-Control-Version-p-972289.html) but was constructed with a code base that should be (easily?) modified with future forks to support most of the four digit clocks that are based on the STC controllers. ![Image of Banggood id 972289](http://img.banggood.com/thumb/large/2014/xiemeijuan/03/SKU203096/A7.jpg)
+This is a replacement program for the STC 8051 core uP based DIY digital clock kits available from numerous Chinese sources. The specific clock used to develop this firmware was purchased from [Banggood](http://www.banggood.com/DIY-4-Digit-LED-Electronic-Clock-Kit-Temperature-Light-Control-Version-p-972289.html) but was constructed with a code base that should be (easily?) modified with future forks to support most of the four digit clocks that are based on the STC controllers.
+
+![Image of Banggood id 972289](http://img.banggood.com/thumb/large/2014/xiemeijuan/03/SKU203096/A7.jpg)
 
 ## Getting Started
 You'll need [SDCC](http://sdcc.sf.net) to build and [STC-ISP](http://gxwmcu.com/STCISP/stc-isp-15xx-v6.86.zip) or [STCGAL](https://github.com/grigorig/stcgal) to set the clock speed, processor hardware options and to flash the firmware.
@@ -64,7 +66,9 @@ Once you're connected, you have your choice of either STC-ISP, which is a Window
 
 The last step above can be as easy as removing the connector to P3 and restoring. Or, if you're going to do addtional development, a NC momemtary pushbutton in the +5 line and a diode and resistor in the RX/TX lines to prevent the serial adaptor signals from keeping the processor alive are required. The schematic for these connections is detailed in the STC technical document. Links below.
 
-### Changes on your own
+### Making changes
+It is a simple matter to rebuild with the provided Makefile for SDCC. The makefile originated with zerog2k's STC DIY-Clock project and I extended it with the additional file structure I created. In doing so, I found that there were several file interdependencies that required a fair number of "make clean" followed by "make" commands so I added the ".phony" rule to just recompile everything per session since the compile and link times were insignificant. Better to wait three seconds for a complete rebuild than to waste twenty minutes on trying to figure out why the changes didn't appear in the code.
+
 If you want to make any significant code changes, you'll probably wish you had some debugging cability. If you have the STC15W408AS part in your clock, you're in luck as this processor has a second timer and UART. The code already has initialization in place for this UART  if turned on in the global.h header file. SDCC supports a small footprint printf (printf_tiny) that only requires about 400 additional bytes of flash. The timer 2 default configuration is for 115200 baud, 8/1/N. On the Banggood board, the RX and TX have seperate pins on a two pin connector, P3. Connection to a serial device is:
 
  ----------------------------
@@ -76,7 +80,7 @@ If you want to make any significant code changes, you'll probably wish you had s
 
 In order to pick up the GND connection, you'll need to parallel the main serial port on P1. The connections for P1 are detailed in the previous section.
 
-##Program Assumptions
+## Program Assumptions
 The cpu clock is set to run at 22.1184mhz. Originally, things started out at 11.0592mhz but after investigating the timing of other clocks and displays, it was discovered that the white and blue LED's appear to be very, very bright. After some experimentation with timing and dimming schemes, I decided to go with a 50us clock tick and in order to not waste all the cpu time servicing the timer ISR, I doubled the clock rate. The STC parts can go to 35mhz and while I tested them at these speeds, the USB serial upload was not 100% reliable, so I comprimised at 22.1184mhz. Interestingly, the current consuption of these parts is very low and the total current at 22mhz was only a few milliamps, made even more insignificant by the LED current. At this nice, fast 50us clock tick, I set the overall maximum tick count to 64 so dividing that among the four digits allows for a 0.39% digit minimum on time. It was quite suprising the overall brightness at these incredible small on times but this was necessary to get them down to a good dimming level for night time viewing.
 
 ## Authors
@@ -92,8 +96,11 @@ Since the original firmware loaded on the STC proessor cannot be copied, there i
 
 ## Acknowledgments
 * [zerog2k](https://github.com/zerog2k) for his original STC DIY Clock work
+* STC and zerog2k for the ADC code used in the LDR and temperature measurement code
+* Maxim Integrated for their DS1302 app note and [8051 example code](https://www.maximintegrated.com/en/app-notes/index.mvp/id/3449)
+* All the contributors to the SDCC tool set
 
-### references
+### References
 Main STC website(in Chinese - Google translate is your friend!), STCMCU.COM redirects here:
 http://www.gxwmcu.com
 
@@ -108,3 +115,9 @@ http://stcmicro.com/sjsc.html
 
 SDCC User Guide (PDF):
 http://sdcc.sourceforge.net/doc/sdccman.pdf
+
+Maxim DS1302 datasheet:
+http://datasheets.maximintegrated.com/en/ds/DS1302.pdf
+
+Maxim DS1302 application note 3449 with example code for 8051 interfacing:
+https://www.maximintegrated.com/en/app-notes/index.mvp/id/3449
